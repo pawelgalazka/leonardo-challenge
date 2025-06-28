@@ -16,7 +16,7 @@ import {
 import { DetailsModal } from "@/components/details-modal"
 import { useSearchParams } from "next/navigation"
 import { useState } from "react"
-import { PaginationNav } from "@/components/pagination-nav"
+import { Pagination } from "@/components/pagination"
 
 const GET_CHARACTERS = gql`
   query GetCharacters($page: Int!) {
@@ -112,7 +112,7 @@ export function Gallery() {
         <DetailsModal id={characterId} />
       </Dialog.Root>
       <Box mt={5}>
-        <PaginationNav page={page} totalPages={data.characters.info.pages} />
+        <Pagination page={page} totalPages={data.characters.info.pages} />
       </Box>
     </>
   )
