@@ -26,10 +26,12 @@ export async function saveUser(prevState: any, formData: FormData) {
   redirect("/")
 }
 
-export async function getUserDetails() {
+export async function getUserDetails(): Promise<UserDetails> {
   const cookieStore = await cookies()
   const userDetails = cookieStore.get("userDetails")
-  return userDetails ? JSON.parse(userDetails.value) : {}
+  return userDetails
+    ? JSON.parse(userDetails.value)
+    : { username: "", jobTitle: "" }
 }
 
 export async function requireUserDetails() {
