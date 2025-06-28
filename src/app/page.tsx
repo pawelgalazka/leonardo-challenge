@@ -2,7 +2,14 @@
 
 import { useQuery, gql } from "@apollo/client"
 
-import { Image, Text, Grid, GridItem, Container } from "@chakra-ui/react"
+import {
+  Image,
+  Text,
+  Grid,
+  GridItem,
+  Container,
+  Heading,
+} from "@chakra-ui/react"
 
 const GET_CHARACTERS = gql`
   query GetCharacters {
@@ -22,7 +29,10 @@ export default function Home() {
   if (error) return <Text>Error: {error.message}</Text>
 
   return (
-    <Container maxW="8xl">
+    <Container maxW="8xl" p={4}>
+      <Heading as="h1" size="5xl" textAlign="center" mb={5}>
+        Information Page
+      </Heading>
       <Grid templateColumns="repeat(4, 1fr)" gap={5}>
         {data.characters.results.map((character: any) => (
           <GridItem
