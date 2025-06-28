@@ -25,7 +25,7 @@ export function UserForm({ username = "", jobTitle = "" }: UserFormProps) {
           <Card.Header>
             <Card.Title>User Details</Card.Title>
           </Card.Header>
-          <Card.Body>
+          <Card.Body display="flex" flexDirection="column" gap={6}>
             <Field.Root invalid={!!state.errors.username}>
               <Field.Label>Username</Field.Label>
               <Input
