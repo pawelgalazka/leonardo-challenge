@@ -2,7 +2,7 @@
 
 import { useQuery, gql } from "@apollo/client"
 
-import { Image, Text, Grid, Dialog, Flex, Button } from "@chakra-ui/react"
+import { Image, Text, Grid, Dialog, Flex, Box } from "@chakra-ui/react"
 
 import { DetailsModal } from "@/components/details-modal"
 import { useSearchParams } from "next/navigation"
@@ -70,7 +70,9 @@ export function Gallery() {
         </Grid>
         <DetailsModal id={characterId} />
       </Dialog.Root>
-      <PaginationNav page={page} totalPages={data.characters.info.pages} />
+      <Box mt={10}>
+        <PaginationNav page={page} totalPages={data.characters.info.pages} />
+      </Box>
     </>
   )
 }
