@@ -1,14 +1,13 @@
 import { Avatar, Button, Link, Heading, Text } from "@chakra-ui/react"
+import type { UserDetails } from "@/actions/user"
 
 import { Flex } from "@chakra-ui/react"
 
-export function Header({
-  username,
-  jobTitle,
-}: {
-  username: string
-  jobTitle: string
-}) {
+interface HeaderProps {
+  userDetails: Required<UserDetails>
+}
+
+export function Header({ userDetails: { username, jobTitle } }: HeaderProps) {
   return (
     <header>
       <Flex

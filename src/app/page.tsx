@@ -12,11 +12,11 @@ export const metadata: Metadata = {
 }
 
 export default async function Home() {
-  const { username, jobTitle } = await requireUserDetails()
+  const userDetails = await requireUserDetails()
 
   return (
     <Container maxW="8xl" p={4}>
-      <Header username={username} jobTitle={jobTitle} />
+      <Header userDetails={userDetails} />
       <Gallery />
       <Footer />
     </Container>

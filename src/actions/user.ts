@@ -4,9 +4,9 @@ import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 import { z } from "zod"
 
-interface UserDetails {
-  username: string
-  jobTitle: string
+export interface UserDetails {
+  username?: string
+  jobTitle?: string
 }
 
 const schema = z.object({
@@ -39,9 +39,9 @@ export async function getUserDetails(): Promise<UserDetails> {
 }
 
 export async function requireUserDetails() {
-  const userDetails = await getUserDetails()
-  if (!userDetails.username || !userDetails.jobTitle) {
+  const { username, jobTitle } = await getUserDetails()
+  if (!username || !jobTitle) {
     redirect("/user")
   }
-  return userDetails
+  return { username, jobTitle }
 }
