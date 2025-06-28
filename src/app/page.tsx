@@ -36,7 +36,6 @@ export default function Home() {
   const searchParams = useSearchParams()
   const page = Number(searchParams.get("page")) || 1
   const [characterId, setCharacterId] = useState<string | undefined>()
-
   const { data, loading, error } = useQuery(GET_CHARACTERS, {
     variables: { page },
   })
