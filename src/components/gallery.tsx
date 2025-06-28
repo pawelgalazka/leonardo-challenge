@@ -10,6 +10,7 @@ import {
   Flex,
   Box,
   Skeleton,
+  Alert,
 } from "@chakra-ui/react"
 
 import { DetailsModal } from "@/components/details-modal"
@@ -40,7 +41,16 @@ export function Gallery() {
     variables: { page },
   })
 
-  if (error) return <Text>Error: {error.message}</Text>
+  if (error)
+    return (
+      <Alert.Root status="error" size="lg">
+        <Alert.Indicator />
+        <Alert.Content>
+          <Alert.Title>Error</Alert.Title>
+          <Alert.Description>{error.message}</Alert.Description>
+        </Alert.Content>
+      </Alert.Root>
+    )
 
   if (loading) {
     return (
