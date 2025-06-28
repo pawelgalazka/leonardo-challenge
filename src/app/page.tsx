@@ -23,9 +23,16 @@ export default function Home() {
 
   return (
     <Container maxW="8xl">
-      <Grid templateColumns="repeat(4, 1fr)" gap={4}>
+      <Grid templateColumns="repeat(4, 1fr)" gap={5}>
         {data.characters.results.map((character: any) => (
-          <GridItem key={character.id}>
+          <GridItem
+            key={character.id}
+            display="flex"
+            flexDirection="column"
+            justifyContent="center"
+            alignItems="center"
+            gap={3}
+          >
             <Image
               src={character.image}
               alt={character.name}
