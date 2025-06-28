@@ -13,11 +13,12 @@ import {
 } from "@chakra-ui/react"
 
 import { DetailsModal } from "@/components/details-modal"
+import { useSearchParams } from "next/navigation"
 import { useState } from "react"
 
 const GET_CHARACTERS = gql`
-  query GetCharacters {
-    characters {
+  query GetCharacters($page: Int!) {
+    characters(page: $page) {
       results {
         id
         name
@@ -28,12 +29,16 @@ const GET_CHARACTERS = gql`
 `
 
 export default function Home() {
-  const { data, loading, error } = useQuery(GET_CHARACTERS)
+  const searchParams = useSearchParams()
+  const page = Number(searchParams.get("page")) || 1
+  const [characterId, setCharacterId] = useState<string | undefined>()
+
+  const { data, loading, error } = useQuery(GET_CHARACTERS, {
+    variables: { page },
+  })
 
   if (loading) return <Text>Loading...</Text>
   if (error) return <Text>Error: {error.message}</Text>
-
-  const [characterId, setCharacterId] = useState<string | undefined>()
 
   return (
     <Container maxW="8xl" p={4}>
