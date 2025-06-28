@@ -2,7 +2,7 @@
 
 import { useActionState, useState } from "react"
 import { Button, Card, Center, Field, Input, Link } from "@chakra-ui/react"
-import { saveUser } from "@/actions/user"
+import { setUserDetails } from "@/actions/user"
 
 interface UserFormProps {
   username?: string
@@ -14,7 +14,7 @@ export function UserForm({ username = "", jobTitle = "" }: UserFormProps) {
   const [jobTitleState, setJobTitle] = useState(jobTitle)
   const hasInitialValues = username !== "" && jobTitle !== ""
 
-  const [state, formAction, isPending] = useActionState(saveUser, {
+  const [state, formAction, isPending] = useActionState(setUserDetails, {
     errors: {},
   })
 

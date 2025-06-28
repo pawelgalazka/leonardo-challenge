@@ -14,7 +14,7 @@ const schema = z.object({
   jobTitle: z.string().min(1).max(40),
 })
 
-export async function saveUser(prevState: any, formData: FormData) {
+export async function setUserDetails(prevState: any, formData: FormData) {
   const username = formData.get("username")
   const jobTitle = formData.get("jobTitle")
   const parsed = schema.safeParse({ username, jobTitle })
