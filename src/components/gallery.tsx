@@ -62,7 +62,12 @@ export function Gallery() {
 
   return (
     <>
-      <Dialog.Root placement="center" lazyMount size="sm">
+      <Dialog.Root
+        placement="center"
+        lazyMount
+        size="sm"
+        scrollBehavior="inside"
+      >
         <Grid
           templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }}
           gap={8}
