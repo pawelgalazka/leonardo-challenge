@@ -111,7 +111,7 @@ export function Gallery() {
         </Grid>
         <DetailsModal id={characterId} />
       </Dialog.Root>
-      <Box mt={10}>
+      <Box mt={5}>
         <PaginationNav page={page} totalPages={data.characters.info.pages} />
       </Box>
     </>

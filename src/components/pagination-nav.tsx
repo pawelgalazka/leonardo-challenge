@@ -1,8 +1,8 @@
 "use client"
 
 import { ButtonGroup, Center, IconButton, Pagination } from "@chakra-ui/react"
-import { LuChevronLeft, LuChevronRight } from "react-icons/lu"
 import { useRouter } from "next/navigation"
+import { HiChevronLeft, HiChevronRight } from "react-icons/hi"
 
 interface PaginationNavProps {
   page: number
@@ -14,30 +14,21 @@ export function PaginationNav({ page, totalPages }: PaginationNavProps) {
 
   return (
     <Center>
-      <Pagination.Root count={totalPages} defaultPage={page}>
-        <ButtonGroup variant="ghost" size="2xl">
+      <Pagination.Root
+        count={totalPages}
+        page={page}
+        onPageChange={({ page }) => router.push(`/?page=${page}`)}
+      >
+        <ButtonGroup gap="4" size="lg" variant="ghost">
           <Pagination.PrevTrigger asChild>
             <IconButton>
-              <LuChevronLeft />
+              <HiChevronLeft />
             </IconButton>
           </Pagination.PrevTrigger>
-
-          <Pagination.Items
-            render={(page) => (
-              <IconButton
-                variant={{ base: "ghost", _selected: "outline" }}
-                onClick={() => {
-                  router.push(`?page=${page.value}`)
-                }}
-              >
-                {page.value}
-              </IconButton>
-            )}
-          />
-
+          <Pagination.PageText />
           <Pagination.NextTrigger asChild>
             <IconButton>
-              <LuChevronRight />
+              <HiChevronRight />
             </IconButton>
           </Pagination.NextTrigger>
         </ButtonGroup>
