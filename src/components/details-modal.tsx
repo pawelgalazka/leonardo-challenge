@@ -12,13 +12,14 @@ const GET_CHARACTER = gql`
 `
 
 interface DetailsModalProps {
-  id: string
+  id?: string
 }
 
 export function DetailsModal({ id }: DetailsModalProps) {
-  // const { data, loading, error } = useQuery(GET_CHARACTER, {
-  //   variables: { id },
-  // })
+  const { data, loading, error } = useQuery(GET_CHARACTER, {
+    variables: { id },
+    skip: !id,
+  })
 
   return (
     <Portal>
@@ -26,9 +27,15 @@ export function DetailsModal({ id }: DetailsModalProps) {
       <Dialog.Positioner>
         <Dialog.Content>
           <Dialog.Header>
-            <Dialog.Title>Test</Dialog.Title>
+            <Dialog.Title>{data?.character?.name}</Dialog.Title>
           </Dialog.Header>
-          <Dialog.Body>Test</Dialog.Body>
+          <Dialog.Body>
+            <Image
+              src={data?.character?.image}
+              alt={data?.character?.name}
+              borderRadius="md"
+            />
+          </Dialog.Body>
           <Dialog.Footer>
             <Dialog.ActionTrigger asChild>
               <Button>Close</Button>
