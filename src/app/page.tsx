@@ -10,6 +10,12 @@ import {
 
 import { Gallery } from "@/components/gallery"
 import { requireUserDetails } from "@/actions/user"
+import { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Rick and Morty Gallery",
+  description: "A gallery of characters from Rick and Morty",
+}
 
 export default async function Home() {
   const { username, jobTitle } = await requireUserDetails()
