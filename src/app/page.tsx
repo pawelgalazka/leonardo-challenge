@@ -9,12 +9,16 @@ import {
   GridItem,
   Container,
   Heading,
+  Dialog,
 } from "@chakra-ui/react"
+
+import { DetailsModal } from "@/components/details-modal"
 
 const GET_CHARACTERS = gql`
   query GetCharacters {
     characters {
       results {
+        id
         name
         image
       }
@@ -33,25 +37,30 @@ export default function Home() {
       <Heading as="h1" size="5xl" textAlign="center" mb={5}>
         Information Page
       </Heading>
+
       <Grid templateColumns="repeat(4, 1fr)" gap={5}>
         {data.characters.results.map((character: any) => (
-          <GridItem
-            key={character.id}
-            display="flex"
-            flexDirection="column"
-            justifyContent="center"
-            alignItems="center"
-            gap={3}
-          >
-            <Image
-              src={character.image}
-              alt={character.name}
-              borderRadius="md"
-            />
-            <Text fontSize="md" fontWeight="bold" textAlign="center">
-              {character.name}
-            </Text>
-          </GridItem>
+          <Dialog.Root key={character.name} placement="center">
+            <Dialog.Trigger>
+              <GridItem
+                display="flex"
+                flexDirection="column"
+                justifyContent="center"
+                alignItems="center"
+                gap={3}
+              >
+                <Image
+                  src={character.image}
+                  alt={character.name}
+                  borderRadius="md"
+                />
+                <Text fontSize="md" fontWeight="bold" textAlign="center">
+                  {character.name}
+                </Text>
+              </GridItem>
+            </Dialog.Trigger>
+            <DetailsModal id={character.id} />
+          </Dialog.Root>
         ))}
       </Grid>
     </Container>
