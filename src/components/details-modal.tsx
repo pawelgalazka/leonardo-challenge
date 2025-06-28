@@ -4,10 +4,10 @@ import {
   Dialog,
   Portal,
   Image,
-  Text,
   Button,
   DataList,
-  Center,
+  Skeleton,
+  SkeletonText,
 } from "@chakra-ui/react"
 
 const GET_CHARACTER = gql`
@@ -48,19 +48,27 @@ export function DetailsModal({ id }: DetailsModalProps) {
               <DataList.Item>
                 <DataList.ItemLabel>image</DataList.ItemLabel>
                 <DataList.ItemValue>
-                  <Image
-                    src={data?.character?.image}
-                    alt={data?.character?.name}
-                    width="100%"
-                    borderRadius="md"
-                  />
+                  {loading ? (
+                    <Skeleton height="400px" width="100%" />
+                  ) : (
+                    <Image
+                      src={data?.character?.image}
+                      alt={data?.character?.name}
+                      width="100%"
+                      borderRadius="md"
+                    />
+                  )}
                 </DataList.ItemValue>
               </DataList.Item>
               {stringFields.map((field) => (
                 <DataList.Item key={field}>
                   <DataList.ItemLabel>{field}</DataList.ItemLabel>
                   <DataList.ItemValue>
-                    {data?.character?.[field]}
+                    {loading ? (
+                      <SkeletonText noOfLines={1} />
+                    ) : (
+                      data?.character?.[field]
+                    )}
                   </DataList.ItemValue>
                 </DataList.Item>
               ))}
