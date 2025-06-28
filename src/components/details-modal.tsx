@@ -43,13 +43,7 @@ export function DetailsModal({ id }: DetailsModalProps) {
         <Dialog.Content>
           <Dialog.Header>
             <Dialog.Title>
-              {error ? (
-                "Error!"
-              ) : loading ? (
-                <SkeletonText noOfLines={1} />
-              ) : (
-                data?.character?.name
-              )}
+              {error ? "Error!" : data?.character?.name}
             </Dialog.Title>
           </Dialog.Header>
           <Dialog.Body>

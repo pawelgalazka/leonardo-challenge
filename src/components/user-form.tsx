@@ -1,7 +1,15 @@
 "use client"
 
 import { useActionState, useState } from "react"
-import { Button, Card, Center, Field, Input, Link } from "@chakra-ui/react"
+import {
+  Button,
+  Card,
+  Center,
+  Field,
+  Input,
+  Link,
+  Text,
+} from "@chakra-ui/react"
 import { setUserDetails } from "@/actions/user"
 import type { UserDetails } from "@/actions/user"
 
@@ -25,9 +33,10 @@ export function UserForm({
       <form action={formAction}>
         <Card.Root width="500px" p={4}>
           <Card.Header>
-            <Card.Title>User Details</Card.Title>
+            <Card.Title>Hello 👋</Card.Title>
           </Card.Header>
           <Card.Body display="flex" flexDirection="column" gap={6}>
+            <Text>Please enter your details below to continue.</Text>
             <Field.Root invalid={!!state.errors.username}>
               <Field.Label>Username</Field.Label>
               <Input
