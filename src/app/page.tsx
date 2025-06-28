@@ -68,6 +68,11 @@ export default function Home() {
         </Grid>
         <DetailsModal id={characterId} />
       </Dialog.Root>
+      <footer>
+        <Text fontSize="sm" textAlign="center" mt={5}>
+          Challenge v3.5
+        </Text>
+      </footer>
     </Container>
   )
 }
