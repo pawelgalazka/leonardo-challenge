@@ -1,6 +1,6 @@
 "use client"
 
-import { Provider } from "@/components/ui/provider"
+import { Provider } from "@/components/chakra/provider"
 import { Inter } from "next/font/google"
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client"
 
