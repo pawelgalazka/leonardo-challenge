@@ -31,6 +31,7 @@ export function UserForm({ username = "", jobTitle = "" }: UserFormProps) {
               <Input
                 name="username"
                 value={usernameState}
+                maxLength={20}
                 onChange={(e) => setUsername(e.target.value)}
               />
               {state.errors.username && (
@@ -44,6 +45,7 @@ export function UserForm({ username = "", jobTitle = "" }: UserFormProps) {
               <Input
                 name="jobTitle"
                 value={jobTitleState}
+                maxLength={20}
                 onChange={(e) => setJobTitle(e.target.value)}
               />
               {state.errors.jobTitle && (

@@ -10,8 +10,8 @@ export interface UserDetails {
 }
 
 const schema = z.object({
-  username: z.string().min(1).max(40),
-  jobTitle: z.string().min(1).max(40),
+  username: z.string().trim().min(1).max(20),
+  jobTitle: z.string().trim().min(1).max(20),
 })
 
 export async function setUserDetails(prevState: any, formData: FormData) {
