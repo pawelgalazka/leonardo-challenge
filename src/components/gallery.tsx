@@ -37,7 +37,7 @@ export function Gallery() {
 
   return (
     <>
-      <Dialog.Root placement="center" lazyMount>
+      <Dialog.Root placement="center" lazyMount size="sm">
         <Grid
           templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }}
           gap={5}
