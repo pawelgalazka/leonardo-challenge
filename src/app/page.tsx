@@ -16,7 +16,13 @@ export default async function Home() {
 
   return (
     <Container maxW="8xl" p={4}>
-      <Flex justifyContent="space-between" alignItems="center" mb={5}>
+      <Flex
+        justifyContent={{ base: "center", md: "space-between" }}
+        alignItems="center"
+        mb={5}
+        wrap="wrap"
+        gap={2}
+      >
         <Flex alignItems="center" justifyContent="center" gap={2}>
           <Avatar.Root>
             <Avatar.Fallback name={username} />
