@@ -27,11 +27,15 @@ export async function saveUser(prevState: any, formData: FormData) {
 }
 
 export async function getUserDetails(): Promise<UserDetails> {
-  const cookieStore = await cookies()
-  const userDetails = cookieStore.get("userDetails")
-  return userDetails
-    ? JSON.parse(userDetails.value)
-    : { username: "", jobTitle: "" }
+  try {
+    const cookieStore = await cookies()
+    const userDetails = cookieStore.get("userDetails")
+    return userDetails
+      ? JSON.parse(userDetails.value)
+      : { username: "", jobTitle: "" }
+  } catch (error) {
+    return { username: "", jobTitle: "" }
+  }
 }
 
 export async function requireUserDetails() {
