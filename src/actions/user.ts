@@ -31,3 +31,11 @@ export async function getUserDetails() {
   const userDetails = cookieStore.get("userDetails")
   return userDetails ? JSON.parse(userDetails.value) : {}
 }
+
+export async function requireUserDetails() {
+  const userDetails = await getUserDetails()
+  if (!userDetails.username || !userDetails.jobTitle) {
+    redirect("/user")
+  }
+  return userDetails
+}
