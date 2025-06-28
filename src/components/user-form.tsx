@@ -31,12 +31,14 @@ export function UserForm({
   return (
     <Center h="100vh">
       <form action={formAction}>
-        <Card.Root width="500px" p={4}>
+        <Card.Root p={4}>
           <Card.Header>
             <Card.Title>Hello 👋</Card.Title>
+            <Card.Description>
+              Please enter your details below to continue.
+            </Card.Description>
           </Card.Header>
           <Card.Body display="flex" flexDirection="column" gap={6}>
-            <Text>Please enter your details below to continue.</Text>
             <Field.Root invalid={!!state.errors.username}>
               <Field.Label>Username</Field.Label>
               <Input
