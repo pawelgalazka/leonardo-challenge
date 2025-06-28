@@ -11,6 +11,7 @@ import {
   Box,
   Skeleton,
   Alert,
+  SkeletonText,
 } from "@chakra-ui/react"
 
 import { DetailsModal } from "@/components/details-modal"
@@ -56,15 +57,18 @@ export function Gallery() {
     return (
       <Grid
         templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }}
-        gap={5}
+        gap={8}
       >
         {Array.from({ length: 12 }).map((_, index) => (
-          <Skeleton
+          <Flex
             key={index}
-            width="100%"
-            aspectRatio={1}
-            borderRadius="md"
-          />
+            justifyContent="flex-start"
+            flexDirection="column"
+            gap={2}
+          >
+            <Skeleton width="100%" aspectRatio={1} borderRadius="md" />
+            <SkeletonText noOfLines={1} />
+          </Flex>
         ))}
       </Grid>
     )
