@@ -1,7 +1,7 @@
 "use client"
 
 import { useActionState, useState } from "react"
-import { Button, Card, Center, Field, Input } from "@chakra-ui/react"
+import { Button, Card, Center, Field, Input, Link } from "@chakra-ui/react"
 import { saveUser } from "@/actions/user"
 
 interface UserFormProps {
@@ -12,6 +12,7 @@ interface UserFormProps {
 export function UserForm({ username = "", jobTitle = "" }: UserFormProps) {
   const [usernameState, setUsername] = useState(username)
   const [jobTitleState, setJobTitle] = useState(jobTitle)
+  const hasInitialValues = username !== "" && jobTitle !== ""
 
   const [state, formAction, isPending] = useActionState(saveUser, {
     errors: {},
@@ -53,6 +54,11 @@ export function UserForm({ username = "", jobTitle = "" }: UserFormProps) {
             </Field.Root>
           </Card.Body>
           <Card.Footer display="flex" justifyContent="flex-end">
+            {hasInitialValues && (
+              <Button asChild variant="outline">
+                <Link href="/">Cancel</Link>
+              </Button>
+            )}
             <Button type="submit" loading={isPending}>
               Save
             </Button>
