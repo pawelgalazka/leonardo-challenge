@@ -3,13 +3,15 @@
 import { useActionState, useState } from "react"
 import { Button, Card, Center, Field, Input, Link } from "@chakra-ui/react"
 import { setUserDetails } from "@/actions/user"
+import type { UserDetails } from "@/actions/user"
 
 interface UserFormProps {
-  username?: string
-  jobTitle?: string
+  userDetails: UserDetails
 }
 
-export function UserForm({ username = "", jobTitle = "" }: UserFormProps) {
+export function UserForm({
+  userDetails: { username = "", jobTitle = "" },
+}: UserFormProps) {
   const [usernameState, setUsername] = useState(username)
   const [jobTitleState, setJobTitle] = useState(jobTitle)
   const hasInitialValues = username !== "" && jobTitle !== ""

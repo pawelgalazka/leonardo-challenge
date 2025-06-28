@@ -8,6 +8,6 @@ export const metadata: Metadata = {
 }
 
 export default async function User() {
-  const { username, jobTitle } = await getUserDetails()
-  return <UserForm username={username} jobTitle={jobTitle} />
+  const userDetails = await getUserDetails()
+  return <UserForm userDetails={userDetails} />
 }
