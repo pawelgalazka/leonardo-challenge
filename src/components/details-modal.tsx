@@ -49,12 +49,14 @@ export function DetailsModal({ id }: DetailsModalProps) {
                 <DataList.ItemLabel>image</DataList.ItemLabel>
                 <DataList.ItemValue>
                   {loading ? (
-                    <Skeleton height="400px" width="100%" />
+                    <Skeleton width="100%" aspectRatio={1} borderRadius="md" />
                   ) : (
                     <Image
                       src={data?.character?.image}
                       alt={data?.character?.name}
                       width="100%"
+                      aspectRatio={1}
+                      objectFit="cover"
                       borderRadius="md"
                     />
                   )}

@@ -2,7 +2,15 @@
 
 import { useQuery, gql } from "@apollo/client"
 
-import { Image, Text, Grid, Dialog, Flex, Box } from "@chakra-ui/react"
+import {
+  Image,
+  Text,
+  Grid,
+  Dialog,
+  Flex,
+  Box,
+  Skeleton,
+} from "@chakra-ui/react"
 
 import { DetailsModal } from "@/components/details-modal"
 import { useSearchParams } from "next/navigation"
@@ -32,15 +40,32 @@ export function Gallery() {
     variables: { page },
   })
 
-  if (loading) return <Text>Loading...</Text>
   if (error) return <Text>Error: {error.message}</Text>
+
+  if (loading) {
+    return (
+      <Grid
+        templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }}
+        gap={5}
+      >
+        {Array.from({ length: 12 }).map((_, index) => (
+          <Skeleton
+            key={index}
+            width="100%"
+            aspectRatio={1}
+            borderRadius="md"
+          />
+        ))}
+      </Grid>
+    )
+  }
 
   return (
     <>
       <Dialog.Root placement="center" lazyMount size="sm">
         <Grid
           templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }}
-          gap={5}
+          gap={8}
         >
           {data.characters.results.map((character: any) => (
             <Dialog.Trigger
@@ -51,7 +76,6 @@ export function Gallery() {
               <Flex
                 as="button"
                 justifyContent="flex-start"
-                alignItems="center"
                 flexDirection="column"
                 gap={2}
                 cursor="pointer"
@@ -60,6 +84,8 @@ export function Gallery() {
                   src={character.image}
                   alt={character.name}
                   borderRadius="md"
+                  aspectRatio={1}
+                  objectFit="cover"
                 />
                 <Text fontSize="md" fontWeight="bold" textAlign="center">
                   {character.name}
