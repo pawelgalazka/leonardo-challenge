@@ -1,16 +1,27 @@
 "use client"
 
-import { useActionState, useState } from "react"
-import { Button, Card, Center, Field, Input } from "@chakra-ui/react"
-import { saveUser } from "@/actions/user"
+import { useActionState, useEffect, useState } from "react"
+import { Button, Card, Center, Field, Input, Text } from "@chakra-ui/react"
+import { getUserDetails, saveUser } from "@/actions/user"
 
 export default function User() {
   const [username, setUsername] = useState("")
   const [jobTitle, setJobTitle] = useState("")
+  const [mounted, setMounted] = useState(false)
 
   const [state, formAction, isPending] = useActionState(saveUser, {
     errors: {},
   })
+
+  useEffect(() => {
+    async function fetchUserDetails() {
+      const userDetails = await getUserDetails()
+      if (userDetails.username) setUsername(userDetails.username)
+      if (userDetails.jobTitle) setJobTitle(userDetails.jobTitle)
+    }
+    fetchUserDetails()
+    setMounted(true)
+  }, [])
 
   return (
     <Center h="100vh">
@@ -20,6 +31,7 @@ export default function User() {
             <Card.Title>User Details</Card.Title>
           </Card.Header>
           <Card.Body>
+            {!mounted && <Text>Loading data...</Text>}
             <Field.Root invalid={!!state.errors.username}>
               <Field.Label>Username</Field.Label>
               <Input

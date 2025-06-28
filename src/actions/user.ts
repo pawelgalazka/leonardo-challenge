@@ -25,3 +25,9 @@ export async function saveUser(prevState: any, formData: FormData) {
   cookieStore.set("userDetails", JSON.stringify(parsed.data))
   redirect("/")
 }
+
+export async function getUserDetails() {
+  const cookieStore = await cookies()
+  const userDetails = cookieStore.get("userDetails")
+  return userDetails ? JSON.parse(userDetails.value) : {}
+}
