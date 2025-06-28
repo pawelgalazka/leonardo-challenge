@@ -13,3 +13,7 @@
    ```
 
 3. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Vercel deployment
+
+The application is deployed and available at [https://leonardo-challenge-drab.vercel.app/](https://leonardo-challenge-drab.vercel.app/)
