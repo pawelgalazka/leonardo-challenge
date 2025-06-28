@@ -31,7 +31,7 @@ export function Header({ userDetails: { username, jobTitle } }: HeaderProps) {
       </Flex>
 
       <Heading as="h1" size="5xl" textAlign="center" mb={5}>
-        Information Page
+        Rick and Morty Gallery
       </Heading>
     </header>
   )
