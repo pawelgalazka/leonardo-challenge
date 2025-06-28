@@ -15,10 +15,14 @@ import {
 import { DetailsModal } from "@/components/details-modal"
 import { useSearchParams } from "next/navigation"
 import { useState } from "react"
+import { PaginationNav } from "@/components/pagination-nav"
 
 const GET_CHARACTERS = gql`
   query GetCharacters($page: Int!) {
     characters(page: $page) {
+      info {
+        pages
+      }
       results {
         id
         name
@@ -49,7 +53,7 @@ export default function Home() {
         <Grid templateColumns="repeat(4, 1fr)" gap={5}>
           {data.characters.results.map((character: any) => (
             <Dialog.Trigger
-              key={character.name}
+              key={character.id}
               onClick={() => setCharacterId(character.id)}
             >
               <GridItem
@@ -73,6 +77,7 @@ export default function Home() {
         </Grid>
         <DetailsModal id={characterId} />
       </Dialog.Root>
+      <PaginationNav page={page} totalPages={data.characters.info.pages} />
       <footer>
         <Text fontSize="sm" textAlign="center" mt={5}>
           Challenge v3.5
