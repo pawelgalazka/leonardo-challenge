@@ -2,15 +2,7 @@
 
 import { useQuery, gql } from "@apollo/client"
 
-import {
-  Image,
-  Text,
-  Grid,
-  GridItem,
-  Container,
-  Heading,
-  Dialog,
-} from "@chakra-ui/react"
+import { Image, Text, Grid, Dialog, Flex, Button } from "@chakra-ui/react"
 
 import { DetailsModal } from "@/components/details-modal"
 import { useSearchParams } from "next/navigation"
@@ -46,18 +38,23 @@ export function Gallery() {
   return (
     <>
       <Dialog.Root placement="center" lazyMount>
-        <Grid templateColumns="repeat(4, 1fr)" gap={5}>
+        <Grid
+          templateColumns={{ base: "repeat(2, 1fr)", md: "repeat(4, 1fr)" }}
+          gap={5}
+        >
           {data.characters.results.map((character: any) => (
             <Dialog.Trigger
+              asChild
               key={character.id}
               onClick={() => setCharacterId(character.id)}
             >
-              <GridItem
-                display="flex"
-                flexDirection="column"
-                justifyContent="center"
+              <Flex
+                as="button"
+                justifyContent="flex-start"
                 alignItems="center"
-                gap={3}
+                flexDirection="column"
+                gap={2}
+                cursor="pointer"
               >
                 <Image
                   src={character.image}
@@ -67,7 +64,7 @@ export function Gallery() {
                 <Text fontSize="md" fontWeight="bold" textAlign="center">
                   {character.name}
                 </Text>
-              </GridItem>
+              </Flex>
             </Dialog.Trigger>
           ))}
         </Grid>
