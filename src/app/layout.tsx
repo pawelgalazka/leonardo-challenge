@@ -1,5 +1,5 @@
 "use client"
-import type { Metadata } from "next"
+
 import { Provider } from "@/components/ui/provider"
 import { Inter } from "next/font/google"
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client"
