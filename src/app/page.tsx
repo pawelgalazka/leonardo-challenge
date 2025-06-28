@@ -1,16 +1,35 @@
-import { Text, Container, Heading, Button, Link } from "@chakra-ui/react"
+import {
+  Text,
+  Container,
+  Heading,
+  Button,
+  Link,
+  Flex,
+  Avatar,
+} from "@chakra-ui/react"
 
 import { Gallery } from "@/components/gallery"
 import { requireUserDetails } from "@/actions/user"
 
 export default async function Home() {
-  await requireUserDetails()
+  const { username, jobTitle } = await requireUserDetails()
 
   return (
     <Container maxW="8xl" p={4}>
-      <Button asChild>
-        <Link href="/user">Update User Details</Link>
-      </Button>
+      <Flex justifyContent="space-between" alignItems="center" mb={5}>
+        <Flex alignItems="center" justifyContent="center" gap={2}>
+          <Avatar.Root>
+            <Avatar.Fallback name={username} />
+          </Avatar.Root>
+          <Text fontSize="md" textAlign="center">
+            Username: <b>{username}</b>, Job Title: <b>{jobTitle}</b>
+          </Text>
+        </Flex>
+        <Button asChild variant="subtle">
+          <Link href="/user">Update User Details</Link>
+        </Button>
+      </Flex>
+
       <Heading as="h1" size="5xl" textAlign="center" mb={5}>
         Information Page
       </Heading>
