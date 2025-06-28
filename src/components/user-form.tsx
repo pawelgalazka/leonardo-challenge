@@ -1,3 +1,7 @@
+/**
+ * User form component for collecting and updating user details
+ * Handles form validation and submission using server actions
+ */
 "use client"
 
 import { useActionState, useState } from "react"
@@ -13,10 +17,20 @@ import {
 import { setUserDetails } from "@/actions/user"
 import type { UserDetails } from "@/actions/user"
 
+/**
+ * Props interface for the UserForm component
+ */
 interface UserFormProps {
   userDetails: UserDetails
 }
 
+/**
+ * User form component that allows users to enter or update their details
+ * Uses server actions for form submission and validation
+ *
+ * @param userDetails - Object containing the user's current username and job title
+ * @returns Form component with input fields for username and job title
+ */
 export function UserForm({
   userDetails: { username = "", jobTitle = "" },
 }: UserFormProps) {

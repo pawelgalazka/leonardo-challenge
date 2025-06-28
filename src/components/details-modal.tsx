@@ -1,3 +1,7 @@
+/**
+ * Details modal component for displaying character information
+ * Fetches and displays detailed information about a Rick and Morty character
+ */
 import { useQuery, gql } from "@apollo/client"
 
 import {
@@ -11,6 +15,10 @@ import {
   Alert,
 } from "@chakra-ui/react"
 
+/**
+ * GraphQL query to fetch detailed character information by ID
+ * Returns character name, image, status, species, gender, and type
+ */
 const GET_CHARACTER = gql`
   query GetCharacter($id: ID!) {
     character(id: $id) {
@@ -24,10 +32,20 @@ const GET_CHARACTER = gql`
   }
 `
 
+/**
+ * Props interface for the DetailsModal component
+ */
 interface DetailsModalProps {
   id?: string
 }
 
+/**
+ * Modal component that displays detailed information about a character
+ * Fetches character data using GraphQL when a character ID is provided
+ *
+ * @param id - Optional character ID to fetch details for
+ * @returns Modal dialog with character details or loading/error states
+ */
 export function DetailsModal({ id }: DetailsModalProps) {
   const { data, loading, error } = useQuery(GET_CHARACTER, {
     variables: { id },

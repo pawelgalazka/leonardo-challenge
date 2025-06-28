@@ -1,12 +1,27 @@
+/**
+ * Header component for the application
+ * Displays user information and navigation options
+ */
 import { Avatar, Button, Link, Heading, Text } from "@chakra-ui/react"
 import type { UserDetails } from "@/actions/user"
 
 import { Flex } from "@chakra-ui/react"
 
+/**
+ * Props interface for the Header component
+ * Requires non-nullable username and jobTitle
+ */
 interface HeaderProps {
   userDetails: Required<UserDetails>
 }
 
+/**
+ * Header component that displays user information and app title
+ * Includes user avatar, username, job title, and link to update user details
+ *
+ * @param userDetails - Object containing the user's username and job title
+ * @returns Header component with user information and app title
+ */
 export function Header({ userDetails: { username, jobTitle } }: HeaderProps) {
   return (
     <header>

@@ -1,3 +1,7 @@
+/**
+ * Pagination component for navigating through multiple pages of content
+ * Uses Chakra UI pagination with Next.js router integration
+ */
 "use client"
 
 import {
@@ -9,11 +13,22 @@ import {
 import { useRouter } from "next/navigation"
 import { HiChevronLeft, HiChevronRight } from "react-icons/hi"
 
+/**
+ * Props interface for the Pagination component
+ */
 interface PaginationProps {
   page: number
   totalPages: number
 }
 
+/**
+ * Pagination component that displays current page and navigation controls
+ * Updates URL query parameters when page changes
+ *
+ * @param page - Current page number
+ * @param totalPages - Total number of pages available
+ * @returns Centered pagination controls with previous and next buttons
+ */
 export function Pagination({ page, totalPages }: PaginationProps) {
   const router = useRouter()
 

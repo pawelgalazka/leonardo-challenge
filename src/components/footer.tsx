@@ -1,5 +1,14 @@
+/**
+ * Footer component for the application
+ * Displays version information at the bottom of the page
+ */
 import { Text } from "@chakra-ui/react"
 
+/**
+ * Simple footer component that displays the application version
+ *
+ * @returns Footer with centered version text
+ */
 export function Footer() {
   return (
     <footer>

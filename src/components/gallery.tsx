@@ -1,3 +1,7 @@
+/**
+ * Gallery component for displaying Rick and Morty characters
+ * Fetches and displays character cards in a grid layout with pagination
+ */
 "use client"
 
 import { useQuery, gql } from "@apollo/client"
@@ -19,6 +23,10 @@ import { useSearchParams } from "next/navigation"
 import { useState } from "react"
 import { Pagination } from "@/components/pagination"
 
+/**
+ * GraphQL query to fetch characters with pagination
+ * Returns character ID, name, and image URL
+ */
 const GET_CHARACTERS = gql`
   query GetCharacters($page: Int!) {
     characters(page: $page) {
@@ -34,6 +42,12 @@ const GET_CHARACTERS = gql`
   }
 `
 
+/**
+ * Gallery component that displays a grid of character cards
+ * Supports pagination and opening character details in a modal
+ *
+ * @returns Grid of character cards with pagination controls
+ */
 export function Gallery() {
   const searchParams = useSearchParams()
   const page = Number(searchParams.get("page")) || 1
@@ -42,6 +56,7 @@ export function Gallery() {
     variables: { page },
   })
 
+  // Display error message if query fails
   if (error)
     return (
       <Alert.Root status="error" size="lg">
@@ -53,6 +68,7 @@ export function Gallery() {
       </Alert.Root>
     )
 
+  // Display loading skeleton while fetching data
   if (loading) {
     return (
       <Grid
@@ -74,6 +90,7 @@ export function Gallery() {
     )
   }
 
+  // Render gallery grid with character cards
   return (
     <>
       <Dialog.Root
